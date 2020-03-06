@@ -1,42 +1,17 @@
-# This dockerfile uses the ubuntu image
-# VERSION 2 - EDITION 1
-# Author: davidtnfsh
-# Command format: Instruction [arguments / command] ..
+FROM python:3.7.6-alpine3.11
 
-FROM davidtnfsh/python
+COPY . /app
 
-MAINTAINER davidtnfsh davidtnfsh@gmail.com
+WORKDIR /app
+RUN apk --update add gcc g++ git nginx postgresql-dev libffi-dev
+RUN pip install --no-cache-dir poetry
+RUN poetry install
+RUN apk del gcc git \
+    && rm -rf /tmp/* /var/cache/apk/*
 
-ENV LANG=C.UTF-8
+COPY nginx.conf /etc/nginx/nginx.conf
 
-RUN mkdir /code
-WORKDIR /code
-ADD . /code/
+EXPOSE 8000
 
-# to install numpy, scipy
-RUN apt-get update
-RUN apt-get -y install libblas-dev liblapack-dev libatlas-base-dev gfortran 
-
-RUN apt-get -y install sudo wget vim
-
-# to install npm
-RUN apt-get -y install curl python-software-properties
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN apt-get -y install nodejs
-
-# for kcem
-RUN pip3 install git+git://github.com/attardi/wikiextractor.git@2a5e6aebc030c936c7afd0c349e6826c4d02b871
-
-# for MySQL, python3 need to config in specific way...
-RUN  apt-get install -y libmysqld-dev
-
-# Language package
-# zh
-RUN apt-get install -y opencc
-# th
-RUN apt-get install -y libicu-dev
-# jp
-RUN apt-get install -y libmecab-dev mecab mecab-ipadic-utf8
-
-# need to be last
-RUN pip3 install -r requirements.txt
+CMD nginx && gunicorn -b 127.0.0.1:9000 my_django_react_template.wsgi
+# if you don't need postgres, remember to remove postgresql-dev and sqlalchemy

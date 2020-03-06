@@ -3,8 +3,11 @@ language: python
 # add this line.
 # sudo: required
 python:
-  - 3.5
+  - 3.7
 install:
-  - docker-compose build
+  # - docker-compose build
+  - pip install poetry
+  - poetry install
 script:
-  - docker-compose test
+  - python manage.py test
+  # - docker-compose run test --rm -v

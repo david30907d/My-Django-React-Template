@@ -4,6 +4,7 @@ webpack-stats*
 bundles/
 node_modules
 db.sqlite3
+.mypy_cache
 
 # vscode
 .vscode

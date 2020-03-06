@@ -1,5 +1,11 @@
-version: '3'
+version: "3.4"
+
+x-docker-data: &docker-file-info
+  build:
+    context: .
+    dockerfile: Dockerfile
 
 services:
-  web:
-    build: .
+  test:
+    <<: *docker-file-info
+    command: python3 manage.py test
