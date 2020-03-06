@@ -1,7 +1,9 @@
 # Create your views here.
-from django.shortcuts import render
-from django.http import JsonResponse
 from typing import Dict
 
+from django.http import JsonResponse
+from django.shortcuts import render
+
+
 def health_check(request) -> JsonResponse:
-	return JsonResponse({'status': "success"}         , safe=False)
+    return JsonResponse({"status": "success"}, safe=False)
