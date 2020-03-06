@@ -86,6 +86,7 @@ DATABASES = {
         "NAME": "postgres" if DEBUG else os.getenv("NAME"),
         "USER": "postgres" if DEBUG else os.getenv("USER"),
         "PASSWORD": "postgres" if DEBUG else os.getenv("PASSWORD"),
+        # "HOST": "localhost" if DEBUG else os.getenv("HOST"),
         "HOST": "postgres" if DEBUG else os.getenv("HOST"),
         "PORT": "5432",
     }
