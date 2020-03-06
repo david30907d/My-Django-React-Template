@@ -7,6 +7,6 @@ class APITestCase(TestCase):
         self.client = Client()
 
     def test_api_response(self: TestCase) -> None:
-        response = self.client.get("/")
+        response = self.client.get("/health")
         self.assertAlmostEqual(response.status_code, 200)
         self.assertEqual(response.json(), {"status": "success"})
