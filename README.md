@@ -4,7 +4,7 @@
 
 ## Install
 
-1. `pip3 install pipenv`
+1. `pip3 install poetry`
 2. `pipenv install; pipenv shell`
 3. `python manage.py bower install`
 4. `npm install; npm install -g bower`

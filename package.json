@@ -22,6 +22,22 @@
     "webpack-bundle-tracker": "0.2.0"
   },
   "dependencies": {
+    "husky": "^4.2.3",
     "react-remarkable": "1.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "rebase": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.py": [
+      "isort -rc",
+      "black",
+      "pylint --errors-only --generated-members=update",
+      "mypy --ignore-missing-imports",
+      "git add"
+    ]
   }
 }
