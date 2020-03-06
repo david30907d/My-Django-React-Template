@@ -4,4 +4,4 @@ from django.http import JsonResponse
 from typing import Dict
 
 def health_check(request) -> JsonResponse:
-	return JsonResponse({'status': "success"}        , safe=False)
+	return JsonResponse({'status': "success"}         , safe=False)
