@@ -4,10 +4,28 @@ language: python
 # sudo: required
 python:
   - 3.7
+# Cache Gcloud SDK between commands
+cache:
+  directories:
+    - "$HOME/google-cloud-sdk/"
 install:
-  # - docker-compose build
-  - pip install poetry
-  - poetry install
+  - docker-compose build
 script:
-  - python manage.py test
-  # - docker-compose run test --rm -v
+  - docker-compose run --rm test
+
+before_deploy:
+  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+  - source /home/travis/google-cloud-sdk/path.bash.inc
+  - gcloud --quiet version
+  - gcloud --quiet components update
+  - gcloud --quiet components beta update
+  - gcloud --quiet components update kubectl
+
+deploy:
+  - provider: script
+    script: ./deploy.sh
+    skip_cleanup: true
+    on:
+      branch:
+        - master
+        - prod

@@ -6,6 +6,19 @@ x-docker-data: &docker-file-info
     dockerfile: Dockerfile
 
 services:
+  web:
+    <<: *docker-file-info
+    depends_on:
+      - postgres
+    ports:
+      - 8000:8000
+    command: server
   test:
     <<: *docker-file-info
-    command: python3 manage.py test
+    depends_on:
+      - postgres
+    command: python manage.py test
+  postgres:
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    image: postgres:12.2-alpine
