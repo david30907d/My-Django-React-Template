@@ -17,10 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from my_django_react_template import views
 from django.views.generic import TemplateView
+from api.views import health_check
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='index.html')),
+    url('', health_check),
+    url(r'^index$', TemplateView.as_view(template_name='index.html')),
     url(r'^api/$', TemplateView.as_view(template_name='api.html')),
     url(r'^member/$', TemplateView.as_view(template_name='member.html')),
 ]

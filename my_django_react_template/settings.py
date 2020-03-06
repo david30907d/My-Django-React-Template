@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 ] + [
     'webpack_loader',
     'djangobower',
-    'corsheaders']
+    'corsheaders',
+    'api']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
