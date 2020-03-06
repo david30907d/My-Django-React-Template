@@ -1,4 +1,4 @@
-"""udic_nlp_API URL Configuration
+"""my_django_react_template URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from udic_nlp_API import views
+from my_django_react_template import views
 from django.views.generic import TemplateView
 
 urlpatterns = [
