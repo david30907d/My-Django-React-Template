@@ -2,12 +2,12 @@
 
 set -e
 
-PROJECT_NAME="splendid-tower-270308"
+PROJECT_NAME="My First Project"
 RC_NAME="my_django_react_template"
 
 case $TRAVIS_BRANCH in
   "prod")
-    PROJECT_NAME="splendid-tower-270308-prod"
+    PROJECT_NAME="My First Project-prod"
     ;;
 esac
 
@@ -22,7 +22,7 @@ echo "gcloud"
 echo "gcloud config set project $PROJECT_NAME"
 echo "gcloud config set project ${PROJECT_NAME}"
 # gcloud --quiet config set project $PROJECT_NAME
-gcloud config set project $PROJECT_NAME
+gcloud config set project \"$PROJECT_NAME\"
 echo "gcloud PROJECT_NAME"
 # gcloud --quiet config set container/cluster $CLUSTER_NAME_PRD
 gcloud config set container/cluster $CLUSTER_NAME_PRD
