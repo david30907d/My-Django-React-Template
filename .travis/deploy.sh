@@ -20,7 +20,7 @@ gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
 echo "gcloud"
 
 echo "gcloud config set project $PROJECT_NAME"
-echo "gcloud config set project ${PROJECT_NAME}"
+echo "gcloud config set project \"${PROJECT_NAME}\""
 # gcloud --quiet config set project $PROJECT_NAME
 gcloud config set project \"$PROJECT_NAME\"
 echo "gcloud PROJECT_NAME"
